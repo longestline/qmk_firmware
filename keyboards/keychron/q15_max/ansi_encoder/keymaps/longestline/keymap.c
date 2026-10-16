@@ -29,7 +29,8 @@ enum layers {
 #define FN1_WIN MO(WIN_FN1)
 
 // Layout read from the keyboard's Launcher settings, so reflashing keeps it.
-// MAC_BASE is Dvorak with home row mods.
+// MAC_BASE is Dvorak with home row mods. The key left of the left space bar
+// holds FN2, whose home row has { [ ( ` on the left and ~ ) ] } on the right.
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_66(
@@ -37,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,       KC_QUOT,      KC_COMM,      KC_DOT,       KC_P,         KC_Y,         KC_F,         KC_G,         KC_C,         KC_R,         KC_L,         KC_SLSH,      KC_EQL,       KC_BSLS,
         KC_ESC,       LCTL_T(KC_A), LOPT_T(KC_O), LCMD_T(KC_E), LSFT_T(KC_U), KC_I,         KC_D,         RSFT_T(KC_H), RCMD_T(KC_T), ROPT_T(KC_N), RCMD_T(KC_S), KC_MINS,      KC_ENT,
         KC_LSFT,      KC_SCLN,      KC_Q,         KC_J,         KC_K,         KC_X,         KC_B,         KC_M,         KC_W,         KC_V,         KC_Z,         KC_RSFT,      KC_UP,        KC_DEL,
-        KC_LCTL,      KC_LOPTN,     KC_LCMMD,     _______,      KC_SPC,       KC_SPC,       FN1_MAC,      MO(FN2),      KC_LEFT,      KC_DOWN,      KC_RGHT),
+        KC_LCTL,      KC_LOPTN,     KC_LCMMD,     MO(FN2),      KC_SPC,       KC_SPC,       FN1_MAC,      MO(FN2),      KC_LEFT,      KC_DOWN,      KC_RGHT),
 
     [WIN_BASE] = LAYOUT_ansi_66(
         KC_MUTE,      KC_1,         KC_2,         KC_3,         KC_4,         KC_5,         KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         KC_MINS,      KC_BSPC,      KC_MUTE,
@@ -63,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [FN2] = LAYOUT_ansi_66(
         _______,      KC_F1,        KC_F2,        KC_F3,        KC_F4,        KC_F5,        KC_F6,        KC_F7,        KC_F8,        KC_F9,        KC_F10,       KC_F11,       KC_F12,       _______,
         KC_TILD,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
-        _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
+        _______,      KC_LCBR,      KC_LBRC,      KC_LPRN,      KC_GRV,       _______,      _______,      KC_TILD,      KC_RPRN,      KC_RBRC,      KC_RCBR,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      BAT_LVL,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,
         _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______,      _______)
 };
