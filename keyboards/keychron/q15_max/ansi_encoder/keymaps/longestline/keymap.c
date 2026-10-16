@@ -80,9 +80,42 @@ const uint16_t PROGMEM encoder_map[][2][2] = {
 
 #endif // ENCODER_MAP_ENABLE
 
-// G + C together sends Backspace.
-const uint16_t PROGMEM bspc_combo[] = {KC_G, KC_C, COMBO_END};
+enum combos {
+    GC_BSPC,
+    OCOMM_AT,
+    CR_DEL,
+};
+
+// Combo keys must match the keymap exactly, so O is listed as its mod-tap.
+const uint16_t PROGMEM gc_combo[]    = {KC_G, KC_C, COMBO_END};
+const uint16_t PROGMEM ocomm_combo[] = {LOPT_T(KC_O), KC_COMM, COMBO_END};
+const uint16_t PROGMEM cr_combo[]    = {KC_C, KC_R, COMBO_END};
 
 combo_t key_combos[] = {
-    COMBO(bspc_combo, KC_BSPC),
+    [GC_BSPC]  = COMBO(gc_combo, KC_BSPC),
+    [OCOMM_AT] = COMBO(ocomm_combo, KC_AT),
+    [CR_DEL]   = COMBO(cr_combo, KC_DEL),
 };
+
+// "cr" is a common roll in Dvorak (across, describe), so C + R only fires
+// when no other key was pressed in the CR_IDLE_MS before it.
+#define CR_IDLE_MS 150
+
+static uint16_t last_press_time;
+static uint16_t prev_press_time;
+
+bool pre_process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        prev_press_time = last_press_time;
+        last_press_time = record->event.time;
+    }
+    return true;
+}
+
+bool combo_should_trigger(uint16_t combo_index, combo_t *combo, uint16_t keycode, keyrecord_t *record) {
+    // Only the combo's first key is checked; the second always follows closely.
+    if (combo_index == CR_DEL && combo->state == 0) {
+        return TIMER_DIFF_16(record->event.time, prev_press_time) >= CR_IDLE_MS;
+    }
+    return true;
+}
