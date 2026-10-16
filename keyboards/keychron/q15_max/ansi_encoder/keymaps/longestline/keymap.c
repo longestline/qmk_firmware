@@ -33,7 +33,7 @@ enum layers {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [MAC_BASE] = LAYOUT_ansi_66(
-        KC_MUTE,      KC_1,         KC_2,         KC_3,         KC_4,         KC_5,         KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         KC_MINS,      KC_BSPC,      KC_MUTE,
+        KC_MUTE,      KC_1,         KC_2,         KC_3,         KC_4,         KC_5,         KC_6,         KC_7,         KC_8,         KC_9,         KC_0,         KC_MINS,      KC_BSPC,      MS_BTN1,
         KC_TAB,       KC_QUOT,      KC_COMM,      KC_DOT,       KC_P,         KC_Y,         KC_F,         KC_G,         KC_C,         KC_R,         KC_L,         KC_SLSH,      KC_EQL,       KC_BSLS,
         KC_ESC,       LCTL_T(KC_A), LOPT_T(KC_O), LCMD_T(KC_E), LSFT_T(KC_U), KC_I,         KC_D,         RSFT_T(KC_H), RCMD_T(KC_T), ROPT_T(KC_N), RCMD_T(KC_S), KC_MINS,      KC_ENT,
         KC_LSFT,      KC_SCLN,      KC_Q,         KC_J,         KC_K,         KC_X,         KC_B,         KC_M,         KC_W,         KC_V,         KC_Z,         KC_RSFT,      KC_UP,        KC_DEL,
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][2][2] = {
-    [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
+    [MAC_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(MS_WHLD, MS_WHLU)},
     [WIN_BASE] = {ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_VOLD, KC_VOLU)},
     [MAC_FN1]  = {ENCODER_CCW_CW(UG_VALD, UG_VALU), ENCODER_CCW_CW(UG_VALD, UG_VALU)},
     [WIN_FN1]  = {ENCODER_CCW_CW(UG_VALD, UG_VALU), ENCODER_CCW_CW(UG_VALD, UG_VALU)},
